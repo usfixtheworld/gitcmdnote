@@ -1,0 +1,27 @@
+1)查看远程仓库
+$ git remote  
+$ git remote -v #显示远程仓库的URL
+
+2）从远程仓库抓取与拉取你没有的数据
+$ git fecth [remote-name] 
+#执行完后会拥有远程仓库中所有分支的引用，可以随时和并或查看，不会自动合并或修改你当前工作，当准备好时候，必须手动将其合并入你的工作
+
+$ git pull #会自动抓取数据并自动尝试合并所在的分支
+
+3）推送到远程仓库
+$ git push [remote-name] [branch-name]
+#当想将本地master分支推送至服务器origin时（clone命令会自动设置好这两个名字），此命令可以将你所做的备份到服务器
+$ git push origin master
+#当和其他人协作，他人先推送到上游，然后你再推送，你的推送会被拒绝。你必须先把他们的工作拉取下来，并将其合并进入你的工作后才能推送
+
+4）查看远程仓库
+$ git remote show [remote-name]
+#会列出远程仓库的url与跟踪的分支信息
+
+5）远程仓库的移除与重命名
+#将pb重命名未paul 
+$ git remote rename pb paul
+$ git remote
+#同样会修改远程分支名字，过去引用pb/master 现在为paul/master
+$ git remote rm paul 
+
