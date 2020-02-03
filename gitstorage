@@ -18,10 +18,27 @@ $ git push origin master
 $ git remote show [remote-name]
 #会列出远程仓库的url与跟踪的分支信息
 
-5）远程仓库的移除与重命名
+5）添加远程仓库(不甚懂)
+$ git remote add <shortname> <url>
+$ git remote add pb https://github.com/usfixtheworld/gitcmdnote
+$ git checkout -b pb/pbmaster
+$ git fetch pb 
+
+6）远程仓库的移除与重命名
 #将pb重命名未paul 
 $ git remote rename pb paul
 $ git remote
 #同样会修改远程分支名字，过去引用pb/master 现在为paul/master
 $ git remote rm paul 
 
+7）查看标签
+$ git tag
+#查看所有标签
+$ git tag -l 'V1.8.5*'
+#查看V1.8.5相关的标签
+
+8）创建标签
+#可以创建轻量标签（light weight）和附注标签(annotated)，轻量标签只是一个特定提交的引用，附注存储的是一个完整的对象，是可以被校验的。通常建议打附注标签，如果只想拥有一个临时的标签，可使用轻量标签
+附注标签 -a 选项
+$ git tag -a v1.4 -m 'my version 1.4'
+$ git show v1.4
