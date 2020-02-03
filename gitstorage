@@ -38,7 +38,32 @@ $ git tag -l 'V1.8.5*'
 #查看V1.8.5相关的标签
 
 8）创建标签
-#可以创建轻量标签（light weight）和附注标签(annotated)，轻量标签只是一个特定提交的引用，附注存储的是一个完整的对象，是可以被校验的。通常建议打附注标签，如果只想拥有一个临时的标签，可使用轻量标签
-附注标签 -a 选项
+#可以创建轻量标签（light weight）和附注标签(annotated)，轻量标签只是一个特定提交的引用，附注存储的是一个完整的对象，是可以被校验的。通常建议打附注标签，如果只想拥有一个临时的标#签，可使用轻量标签
+#附注标签 -a 选项
 $ git tag -a v1.4 -m 'my version 1.4'
 $ git show v1.4
+
+#轻量标签
+$ git tag v1.4
+
+#后期打标签
+$ git log --pretty='%h %s'  #%H为HASH
+$ git tag -a v1.2 gfceb02
+
+9)共享标签
+#默认情况下git push 不会将标签传送到远程仓库服务器，在创建标签后，需要显示的推送标签只共享服务器
+$ git push origin [tagname]
+$ git push orgin v1.5
+
+#如果一次推送很多标签，可使用--tags标签
+$git push origin --tags  
+#会将所有的不在远程仓库的标签都传送到远程仓库
+
+
+10）检出标签
+#在git中并不能整的检出一个标签，因为他们不能向分支一样移动
+#若想在工作目录与仓库中特定的标签版本一致，可以使用
+$ git checkout -b [branch name] [tagname] 
+#在特定的标签上创建一个新分支
+$ git checkout -b version2 v2.0
+#如果在这之后又进行了一次提交 ，version2 会因为改动向前移动了，那么version2分支就会和v2.0标签不同了，这是需要当心了。
