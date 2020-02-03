@@ -31,7 +31,7 @@ $ git commit -v  #会将git diff内容输出，而不是git status
 $ git commit -m "Fix bug for GITCOMMAND"  # 参数-m 将信息与命令行放在一起
 $ git commit -v -m "Fix bug for GITCOMMAND" 
 
-7)跳过暂存区，自动把所有已经跟踪过得文件暂存起来一起提交,如此就省掉了6)中的$ git add
+7)参数 -a 跳过暂存区，自动把所有已经跟踪过得文件暂存起来一起提交,如此就省掉了6)中的$ git add
 $ git commit -a -m "SOME tips for files."
 
 8)删除

@@ -1,0 +1,46 @@
+1)分支创建
+$ git branch testing
+#git branch 只是创建了testing新分支，并不会自动切换到新分支中过去
+
+$ git log --oneline --decorate
+#--decorate参数可以查看各个分支当前所指的对象
+
+2）分支切换
+$ git checkout tesing
+#分支切换中，要留意你工作目录和暂存区里那些还没有被提交的修改，它可能和你即将检出的分支产生冲突，从而阻止Git切换到该分支，在切换分支前，最好保持一个干净的状态。
+
+3）查看分叉历史
+$ git log --oneline --decorate --graph -all
+
+4)分支新建与合并
+#新建分支并自动切换到该分支
+$ git checkout -b iss53
+Switched to a new branch "iss53"
+等于下面两条
+$ git branch iss53
+$ git checkout iss53
+
+$ git commit -a -m "Added a new file to fix the bug."# 使用-a参数，可不用在执行git add,直接提交
+
+5)合并分支到master
+$ git checkout master
+$ git merge hotfix
+此时已经不需要hotfix分支，可以将之删除,使用-d 参数的git branch
+$ git branch -d hotfix
+
+6)遇到冲突时的分支合并
+如果两个不同分支对同一个部分进行了不同的修改，Git就没有办法干净的合并它们。如果iss53和hotfix的修改都涉及到同一个文件的同一处，在合并时候就好产生冲突。
+此时Git做了合并，但是没有自动创建一个新的合并提交。Git会暂停下来，等待你去解决合并产生的冲突。你可以在合并冲突后的任意时刻使用git status命令来查看那些
+因包含合并冲突而处于未合并(unmerged)状态的文件。
+任何因包含合并冲突而有待解决的文件，都会以未合并状态标识处理。Git在冲突文件中加入标准的冲突解决标记，这样你打开这些包含冲突的文件，然后手动解决冲突。
+
+在解决冲突后，对每个文件使用git add命令来将它们标记未冲突已解决，一旦暂存这些原本有冲突的文件，Git就会将它们标记未冲突已解决。若想用图形化工具来解决冲突，可以运行git mergetool,该命令会启动一个合适的可视化工具，并带领你一步步解决这些冲突。
+
+当确定之前所有冲突的文件都已经暂存了，可输入git commit来完成合并提交。
+
+7）查看每个分支最后一次提交
+$ git branch -v
+#--merged  和--no-merged可以过滤这个列表中已经合并或尚未合并到当前分支的分支
+#查看那些分支已经合并到当前分支
+$ git branch --merged
+#此时如果该分支已经没有意义，可以删除没有*号的分支，git branch -d 删除掉，若存在未合并的工作，删除会失败，若真想删除分支，并丢掉那些工作，使用参数 -D
